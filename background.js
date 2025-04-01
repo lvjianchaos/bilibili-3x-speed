@@ -13,27 +13,22 @@ chrome.commands.onCommand.addListener((command) => {
 
 // 新增：切换速度的函数
 function toggleVideoSpeed() {
-    let currentSpeed = 1; // 默认原速
-    let player = window.player || window.bilibili?.player?.api;
+    // 获取当前视频元素
+    const video = document.querySelector('video');
+    if (!video) return;
 
-    // 尝试通过播放器API获取当前速度
-    if (player && typeof player.getSpeed === 'function') {
-        currentSpeed = player.getSpeed();
-    } else {
-        // 直接获取video元素的当前速度
-        const video = document.querySelector('video');
-        if (video) currentSpeed = video.playbackRate;
-    }
+    // 获取当前播放速度
+    const currentSpeed = video.playbackRate;
 
-    // 计算新速度（3 ↔ 1）
+    // 切换速度（3 ↔ 1）
     const newSpeed = currentSpeed === 3 ? 1 : 3;
 
-    // 尝试通过播放器API设置新速度
-    if (player && typeof player.setSpeed === 'function') {
-        player.setSpeed(newSpeed);
-    } else {
-        // 直接设置video元素的速度
-        const video = document.querySelector('video');
-        if (video) video.playbackRate = newSpeed;
+    // 设置新的播放速度
+    video.playbackRate = newSpeed;
+
+    // 尝试更新播放器UI显示的速度
+    const speedIndicator = document.querySelector('.bilibili-player-video-btn-playbackrate');
+    if (speedIndicator) {
+        speedIndicator.textContent = `${newSpeed}x`;
     }
 }
