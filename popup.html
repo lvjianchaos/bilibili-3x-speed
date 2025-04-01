@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            width: 300px;
+            padding: 20px;
+            margin: 0;
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid #ffb6c1;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #e91e63;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .speed-display {
+            font-size: 24px;
+            color: #ff4081;
+            margin: 20px 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #ff80ab, #ff4081);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            min-width: 100px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #ff4081, #ff80ab);
+        }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .shortcuts {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            border: 1px solid #ffb6c1;
+        }
+
+        .shortcut-item {
+            margin: 8px 0;
+            color: #666;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .shortcut-key {
+            background: #ffebee;
+            padding: 2px 8px;
+            border-radius: 12px;
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #e91e63;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .speed-range {
+            margin-top: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .emoji {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <span class="emoji">🎬</span> B站视频速度控制
+        </div>
+        <div class="speed-display" id="currentSpeed">1.00x</div>
+        <div class="button-group">
+            <button id="speedUp">加速 <span class="emoji">⚡</span></button>
+            <button id="speedDown">减速 <span class="emoji">🐌</span></button>
+        </div>
+        <div class="shortcuts">
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + Shift + ↑</span>
+                <span>加速</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + Shift + ↓</span>
+                <span>减速</span>
+            </div>
+        </div>
+        <div class="speed-range">
+            <span class="emoji">📊</span> 速度范围：0.5x - 4.0x
+        </div>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>
+
+</html>

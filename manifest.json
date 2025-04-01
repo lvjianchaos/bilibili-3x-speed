@@ -1,21 +1,29 @@
 {
   "manifest_version": 3,
   "name": "Bilibili 3x Speed",
-  "version": "1.1",
-  "description": "一键设置B站视频为3倍速（快捷键：Ctrl+Shift+3）",
+  "version": "2.0",
+  "description": "B站视频倍速控制工具（支持快捷键、右键菜单、自定义速度）",
   "permissions": [
     "activeTab",
-    "scripting"
+    "scripting",
+    "storage",
+    "contextMenus"
   ],
   "host_permissions": [
     "https://*.bilibili.com/*"
   ],
   "commands": {
-    "toggle_speed": {
+    "speed_up": {
       "suggested_key": {
-        "default": "Ctrl+Shift+3"
+        "default": "Ctrl+Shift+Up"
       },
-      "description": "设置视频为3倍速/原速"
+      "description": "增加播放速度"
+    },
+    "speed_down": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Down"
+      },
+      "description": "降低播放速度"
     }
   },
   "icons": {
@@ -25,5 +33,23 @@
   },
   "background": {
     "service_worker": "background.js"
-  }
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.bilibili.com/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
 }
